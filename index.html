@@ -2,48 +2,132 @@
 <html>
 <head>
   <title>i-SOAMADA</title>
+
   <style>
     body {
       margin: 0;
       font-family: Arial;
       background: linear-gradient(to right, #141e30, #243b55);
       color: white;
-      text-align: center;
     }
 
-    header {
-      padding: 50px;
-      font-size: 30px;
-      font-weight: bold;
+    /* NAVBAR */
+    nav {
+      background: rgba(0,0,0,0.5);
+      padding: 15px;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
     }
 
-    .btn {
-      background: #00c6ff;
-      padding: 15px 30px;
-      border: none;
+    nav a {
       color: white;
-      font-size: 18px;
-      border-radius: 10px;
+      text-decoration: none;
+      font-weight: bold;
       cursor: pointer;
     }
 
-    .btn:hover {
-      background: #0072ff;
+    nav a:hover {
+      color: #00c6ff;
     }
+
+    /* SECTIONS */
+    .section {
+      display: none;
+      padding: 50px;
+      text-align: center;
+      animation: fadeIn 1s;
+    }
+
+    .active {
+      display: block;
+    }
+
+    /* ANIMATION */
+    @keyframes fadeIn {
+      from {opacity: 0; transform: translateY(20px);}
+      to {opacity: 1; transform: translateY(0);}
+    }
+
+    button {
+      padding: 10px 20px;
+      border: none;
+      background: #00c6ff;
+      color: white;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    input {
+      padding: 10px;
+      margin: 10px;
+      border-radius: 8px;
+      border: none;
+    }
+
   </style>
 </head>
 
 <body>
 
-<header>
-  🚀 Tongasoa eto amin'ny i-SOAMADA
-</header>
+<!-- NAVIGATION -->
+<nav>
+  <a onclick="showPage('home')">Home</a>
+  <a onclick="showPage('about')">About</a>
+  <a onclick="showPage('contact')">Contact</a>
+  <a onclick="showPage('login')">Login</a>
+</nav>
 
-<p>Site voalohany PRO nataoko 😎</p>
+<!-- HOME -->
+<div id="home" class="section active">
+  <h1>🚀 Tongasoa eto amin'ny i-SOAMADA</h1>
+  <p>Site PRO misy animation 😎</p>
+</div>
 
-<button class="btn" onclick="alert('Mandeha tsara ny site 😎🔥')">
-  Tsindrio aho
-</button>
+<!-- ABOUT -->
+<div id="about" class="section">
+  <h1>About</h1>
+  <p>Izaho dia developer mianatra manangana app sy AI 🔥</p>
+</div>
+
+<!-- CONTACT -->
+<div id="contact" class="section">
+  <h1>Contact</h1>
+  <p>Email: example@gmail.com</p>
+</div>
+
+<!-- LOGIN -->
+<div id="login" class="section">
+  <h1>Login</h1>
+
+  <input type="email" id="email" placeholder="Email"><br>
+  <input type="password" id="password" placeholder="Password"><br>
+
+  <button onclick="login()">Login</button>
+
+  <p id="msg"></p>
+</div>
+
+<!-- SCRIPT -->
+<script>
+  function showPage(page) {
+    let sections = document.querySelectorAll(".section");
+    sections.forEach(sec => sec.classList.remove("active"));
+
+    document.getElementById(page).classList.add("active");
+  }
+
+  function login() {
+    let email = document.getElementById("email").value;
+    let password = document.getElementById("password").value;
+
+    if(email === "admin@gmail.com" && password === "1234"){
+      document.getElementById("msg").innerHTML = "✅ Login réussi";
+    } else {
+      document.getElementById("msg").innerHTML = "❌ Diso email na mot de passe";
+    }
+  }
+</script>
 
 </body>
 </html>
